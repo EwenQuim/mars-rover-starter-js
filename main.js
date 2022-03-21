@@ -5,6 +5,8 @@ const Position = require('./lib/position-modules/position')
 const Direction = require('./lib/position-modules/direction')
 const PositionModule = require('./lib/position-modules/position-module')
 const MapModule = require('./lib/map-modules/map-module')
+const MotorModule = require('./lib/movement-modules/motor-module')
+const WheelModule = require('./lib/movement-modules/wheel-module')
 
 const argv = require('yargs')
   .group([ 'positionX', 'positionY', 'direction' ], 'Rover initialization:')
@@ -42,7 +44,10 @@ const initialPosition = new Position({ x: argv.x, y: argv.y, d: direction })
 const mapModule = new MapModule()
 const positionModule = new PositionModule()
 
-const roverParts = { mapModule, positionModule }
+const motorModule = new MotorModule()
+const wheelModule = new WheelModule()
+
+const roverParts = { mapModule, positionModule, motorModule, wheelModule }
 const sleep = {
   wait: (time) => new Promise((resolve) => {
     setTimeout(resolve, time)
