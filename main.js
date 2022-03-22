@@ -6,6 +6,7 @@ const Position = require('./lib/position-modules/position');
 const Direction = require('./lib/position-modules/direction');
 const PositionModule = require('./lib/position-modules/position-module');
 const MapModule = require('./lib/map-modules/map-module');
+const MotorModule = require('./lib/motor-modules/motor-module');
 
 const argv = require('yargs')
   .group(['positionX', 'positionY', 'direction'], 'Rover initialization:')
@@ -22,6 +23,10 @@ const argv = require('yargs')
   .option('direction', {
     alias: 'd',
     describe: 'initial landing rover direction',
+  })
+  .option('motor', {
+    alias: 'm',
+    describe: 'fast or slow motor',
   })
   .option('commands', {
     alias: 'c',
@@ -42,8 +47,9 @@ const initialPosition = new Position({ x: argv.x, y: argv.y, d: direction });
 
 const mapModule = new MapModule();
 const positionModule = new PositionModule();
+const motorModule = new MotorModule({ type: argv.m });
 
-const roverParts = { mapModule, positionModule };
+const roverParts = { mapModule, positionModule, motorModule };
 const dependencies = { console };
 
 console.log('~~~~~ ROVER INITIALIZATION ~~~~~\n');

@@ -4,8 +4,8 @@
   "description": "A mars rover project in Node.js",
   "scripts": {
     "start": "node main.js",
-    "test": "mocha --recursive --exit --reporter dot tests",
-    "test:watch": "mocha --watch --recursive --reporter dot --watch-extensions js ./lib ./tests"
+    "test": "mocha --timeout 10000 --recursive --exit --reporter dot tests",
+    "test:watch": "mocha --timeout 10000 --watch --recursive --reporter dot --watch-extensions js ./lib ./tests"
   },
   "author": "Antoine Boileau <apem.boileau@gmail.com>",
   "license": "MIT",
